@@ -522,10 +522,17 @@ body {
 }
 
 .RRB-page .image-container {
-    background: url(../img/RRB.png);
+    background: url(../img/RRB.png) !important;
     background-size: cover;
     background-position: bottom;
 }
+
+.TWS-page .image-container {
+    background: url(../img/portfolio/ingame2.PNG) !important;
+    background-size: cover;
+    background-position: bottom;
+}
+
 
 .services {
     text-align: center;
@@ -1179,7 +1186,12 @@ input#cfsubmit:hover {
 .profile-page .footer {
     background-color: #01213B;
 }
-
+.RRB-page .footer {
+    background-color: #013624;
+}
+.TWS-page .footer{
+    background-color: #013624;
+}
 .portfolio-page .footer {
     background-color: #004824;
 }
