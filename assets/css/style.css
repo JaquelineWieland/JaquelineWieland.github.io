@@ -516,7 +516,7 @@ body {
 /* ( a ) Story of Glory */
 
 .profile-page .image-container {
-    background: url(../img/about_us_featured.png);
+    background: url(../img/me.jpg);
     background-size: cover;
     background-position: bottom;
 }
@@ -647,7 +647,7 @@ body {
 /* ( a ) Portfolio Section */
 
 .portfolio-page .image-container {
-    background: url(../img/portfolio_featured.png);
+    background: url(../img/comp1.jpg);
     background-size: cover;
     background-position: bottom;
 }
@@ -1138,7 +1138,7 @@ body {
 
 
 .contact-page .image-container {
-    background: url(../img/contact_featured.png);
+    background: url(../img/contactnew.jpg);
     background-size: cover;
     background-position: bottom;
 }
@@ -1184,7 +1184,7 @@ input#cfsubmit:hover {
 }
 
 .profile-page .footer {
-    background-color: #01213B;
+    background-color: #070401;
 }
 .RRB-page .footer {
     background-color: #013624;
@@ -1193,7 +1193,7 @@ input#cfsubmit:hover {
     background-color: #013624;
 }
 .portfolio-page .footer {
-    background-color: #004824;
+    background-color: #D0C4B4;
 }
 
 .service-page .footer {
@@ -1201,7 +1201,7 @@ input#cfsubmit:hover {
 }
 
 .contact-page .footer {
-    background-color: #935B25;
+    background-color: #3A1912;
 }
 
 .footer .copyright {
