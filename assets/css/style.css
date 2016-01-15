@@ -843,7 +843,7 @@ body {
                     =======================================*/
 
 .service-page .image-container {
-    background: url(../img/service_featured.png);
+    background: url(../img/cv.jpg);
     background-size: cover;
     background-position: bottom;
 }
@@ -1197,7 +1197,7 @@ input#cfsubmit:hover {
 }
 
 .service-page .footer {
-    background-color: #761616;
+    background-color: #3F3F3F;
 }
 
 .contact-page .footer {
