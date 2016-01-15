@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hillwalk - Tour</title>
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="css/jquery.bxslider.css">
+    <link type="text/css" rel="stylesheet" href="css/tour.css">
+    <link type="text/css" rel="stylesheet" href="css/navigation.css">
+    <link type="text/css" rel="stylesheet" href="font-awesome-4.2.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/footer.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto|Oswald' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/jquery.bxslider.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfyrOrJ0OJQXbOJigEXcT_uLo-pHPCQl8&amp;sensor=false"></script>
+    <script type="text/javascript" src="js/Chart.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            $('.bxslider').bxSlider();
+            initialize();
+            $("#nav-mobile").html($("#nav-main").html());
+            $("#nav-trigger span").click(function(){
+                if ($("nav#nav-mobile ul").hasClass("expanded")) {
+                    $("nav#nav-mobile ul.expanded").removeClass("expanded").slideUp(250);
+                    $(this).removeClass("open");
+                } else {
+                    $("nav#nav-mobile ul").addClass("expanded").slideDown(250);
+                    $(this).addClass("open");
+                }
+            });
+
+            var data = {
+                labels: ["1km", "2km", "3km", "4km", "5km", "6km", "7km", "8km"],
+                datasets: [
+                    {
+                        label: "My First dataset",
+                        fillColor: "rgba(220,220,220,0.2)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: [769, 1019, 1385, 1725, 1604, 1381, 1122, 830]
+                    }
+
+                ]
+            };
+
+
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myLine = new Chart(ctx).Line(data, {
+                responsive: true
+            });
+
+
+
+        });
+        var map;
+        function initialize() {
+            var myLatlng = new google.maps.LatLng(47.755486,12.850024);
+
+            var mapOptions = {
+                center:myLatlng,
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+
+
+            var map = new google.maps.Map(document.getElementById("map_canvas"),
+                    mapOptions);
+
+            var contentString = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h1 id="firstHeading" class="firstHeading">Reichenhaller Haus</h1>'+
+                    '<div id="bodyContent">'+
+                    '<p><b>Reichenhaller Haus</b><br />' +
+                    'Eine Hütte des Alpenvereins Bereich Bad Reichenhall und dient auch als Notunterkunft.<br />'+
+                    'Bietet 6 Schlapfplätze und 24 Plätze im Matrazenlager</p>'+
+                    '<p>Kontakt: Andreas Frommelt <br/>' +
+                    'Email: andreas.frommelt@sbg.at</p>'+
+                    '</div>'+
+                    '</div>';
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: 'Reichenhallerhaus'
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map,marker);
+            });
+
+
+        }
+
+
+        $(function () {
+            $('[data-toggle="popover"]').popover({
+
+                content : 'Impressum <br /> Anbieter: <br /> Max Mustermann <br /> Musterstraße 12 <br /> 12345 Berlin <br /> Kontakt: <br />  e-Mail: e-Mail@mustermann.de <br /> Website: www.mustermann.de'
+
+            });
+        })
+
+
+    </script>
+
+
+</head>
+<body>
+<div class="nav-wrap">
+    <nav id="nav-main">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="space"><a href="touren.html">Touren</a></li>
+            <li><a href="Aboutme.html">About me</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+    <div id="nav-trigger">
+        <span>Menu</span>
+    </div>
+    <nav id="nav-mobile"></nav>
+
+</div>
+<div class="wrap-content">
+    <img src="images/Fähnchen.png" alt="Hillwalk" id="logo">
+  <div class="row">
+      <div class="col-lg-12">
+          <h1 class="header">Hochstaufen (1771m) <small>über Steinerne Jäger von der Padinger Alm</small></h1>
+
+      </div>
+
+  </div>
+<div class="slider">
+    <ul class="bxslider">
+        <li><img src="images/projekt1tiny.JPG" alt="Bild1" /></li>
+        <li><img src="images/projekt2tiny.JPG" alt="Bild2"/></li>
+        <li><img src="images/projekt3tiny.JPG" alt="Bild3"/></li>
+    </ul>
+</div>
+
+
+
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-1">
+            <h3>Factsheet</h3>
+            <div class="datagrid"><table>
+
+                <tbody>
+                <tr>
+                    <td>Strecke</td>
+                    <td>9,1 km</td>
+
+
+                </tr>
+                <tr class="alt">
+                    <td>Dauer</td>
+                    <td>5:00 - 6:30 h</td>
+
+
+                </tr>
+                <tr>
+                    <td>Aufstieg</td>
+                    <td>1200 m</td>
+
+
+                </tr>
+                <tr class="alt">
+                    <td>Schwierigkeit</td>
+                    <td>mittel</td>
+
+
+                </tr>
+                <tr>
+                    <td>data</td>
+                    <td>data</td>
+
+
+                </tr>
+                </tbody>
+            </table></div>
+        </div>
+
+        <div class="col-lg-6 col-lg-offset-1">
+            <h2>Anfahrt</h2>
+
+
+            <h3>Öffentliche Verkehrsmittel</h3>
+            <p>
+                Mit der Bahn nach Bad Reichenhall. Vom Bahnhof zu Fuß in ca. 1 Stunde zur Padinger Alm.<br />
+</p>
+            <h3>Anfahrt</h3>
+            <p>
+                Autobahn A8 (Deutschland) Abfahrt 115-Bad Reichenhall Richtung Freilassing/Berchtesgaden/Lofer fahren. Rechts abbiegen auf B20. Nach ca. 2,7 km leicht rechts abbiegen auf Reichenhaller Straße Richtung Innsbruck/Lofer/Berchtesgaden. Nach ca. 4,2 km Ausfahrt Inzell/Karlstein/Kaserne. Rechts abbiegen auf Kretabrücke. Gleich danach rechts abbiegen auf Nonner Straße. Straße für 3 km folgen zur Padinger Alm (Nonn 79, 83435 Bad Reichenhall).
+
+
+
+
+        </p>
+            <h3>Parken</h3>
+<p>Gebührenfreier Parkplatz bei der Padinger Alm</p>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <h2>Beschreibung</h2>
+            <p>
+
+                Vom Parkplatz (657m) geht es bei der Zufahrtsstraße zur Padinger Alm links auf einen Forstweg. Diesem folgen, vorbei an der Abzweigung Hochstaufen über Bartlmahd (750m) bis links ein Steig abzweigt (830m) (Hochstaufen über Buchmahd). Nun geht es immer steiler werdend über einen schön angelegten Steig den Wald hinauf. Bei 1280m trifft man auf die Abzweigung Mairalm wo wir uns links halten, dem Grat entgegen. Diesem entlang führt der gut markierte Weg zu einer kurzen Leiter mit Brücke. Weiter geht es in die Südflanke des Hochstaufen abwechselnd über leichte Kletter- (I+) und ausgesetzte Gehpassagen bis auf einmal das Reichenhaller Haus vor einem steht. Vorbei an der in den Fels gebauten Kapelle steht man kurz darauf am Gipfel des Hochstaufen.
+
+                Der Abstieg führt zurück zur Hütte und dann rechtshaltend dem Normalweg (Padinger Alm über Bartlmahd) folgend. Bei 1580m trifft man auf die Abzweigung Mittelstaufen wo wir links weiter talwärts steigen. Über Serpentinen geht es nun rasch in den Wald hinunter bis zur Abzweigung Zwieselalm (1390m). Weiter durch den Wald geht es über den wunderbaren Steig zurück bis man auf die Forststraße vom Aufsteig trifft (750m).
+                Leichte, nur im oberen Teil etwas Trittsicherheit und Schwindelfreiheit erfordernde Bergwanderung. Man gelangt erst ab einer Höhe von rund 1300 m aus dem dichten Wald, hat dann aber sehr schöne Ausblicke und vom Gipfel ein umfassendes Panorama.
+            </p>
+            <h4>Startpunkt der Tour</h4>
+            <p>Parkplatz Padinger Alm</p>
+            <h4>Zielpunkt der Tour</h4>
+           <p>Hochstaufen</p>
+            <h4>Ausrüstung</h4>
+            <p>Feste Wanderschuhe, Getränk, Wanderkarte</p>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div id="map_canvas"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <canvas id="canvas"></canvas>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+<div class="footer">
+
+    <div class="row">
+        <div class="col-lg-5">
+            <h2>Keep Contact</h2>
+            <ul class="list-inline">
+                <li>
+                    <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-fw fa-facebook"></i></a>
+                </li>
+                <li>
+                    <a href="https://plus.google.com/" target="_blank"><i class="fa fa-fw fa-google-plus"></i></a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/?lang=de" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </li>
+
+                <li>
+                    <a href="http://www.pinterest.com/" target="_blank"><i class="fa fa-fw fa-pinterest"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-3 col-lg-offset-4 impressum" >
+            <ul>
+                <li>
+                    <a  data-container="body" data-toggle="popover" data-html="true" data-placement="top" data-content=>Impressum</a>
+                </li>
+                <li>
+                    <a target="_blank">Blog</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row last">
+        <div class="col-lg-12"></div>
+        <p>Copyright © Jaqueline Wieland 2014</p>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+</body>
+</html>

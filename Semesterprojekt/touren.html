@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Hillwalk-Touren</title>
+
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="css/touren.css">
+    <link type="text/css" rel="stylesheet" href="css/navigation.css">
+    <link type="text/css" rel="stylesheet" href="css/footer.css">
+    <link type="text/css" rel="stylesheet" href="font-awesome-4.2.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto|Oswald' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfyrOrJ0OJQXbOJigEXcT_uLo-pHPCQl8&amp;sensor=false"></script>
+    <script>
+        $(document).ready(function(){
+            initialize();
+            document.getElementById("address").addEventListener("keypress", checkforenter, false);
+            /*window.addEventListener("onload", codeAddress(document.getElementById('address').value), false);*/
+
+            $("#nav-mobile").html($("#nav-main").html());
+            $("#nav-trigger span").click(function(){
+                if ($("nav#nav-mobile ul").hasClass("expanded")) {
+                    $("nav#nav-mobile ul.expanded").removeClass("expanded").slideUp(250);
+                    $(this).removeClass("open");
+                } else {
+                    $("nav#nav-mobile ul").addClass("expanded").slideDown(250);
+                    $(this).addClass("open");
+                }
+            });
+        });
+
+        $(function () {
+            $('[data-toggle="popover"]').popover({
+
+                content : 'Impressum <br /> Anbieter: <br /> Max Mustermann <br /> Musterstraße 12 <br /> 12345 Berlin <br /> Kontakt: <br />  e-Mail: e-Mail@mustermann.de <br /> Website: www.mustermann.de'
+
+            });
+        });
+
+        function checkforenter(event){
+            if (event.keyCode == 13){
+                codeAddress(document.getElementById('address').value);
+            }
+        }
+
+        var geocoder;
+        var map;
+        var mapOptions = {
+            zoom: 12,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+
+        function initialize() {
+            geocoder = new google.maps.Geocoder();
+            map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+            codeAddress("Bad Reichenhall");
+
+
+
+            var contentString = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h3 id="firstHeading" class="firstHeading">Hochstaufen (1771m)</h3>'+
+                    '<div id="bodyContent">'+
+                    '<p><b>Hochstaufen (1771m)</b><br />' +
+                    '<img src="images/padingermaps.jpg" alt="PadingerAlm" class="mapspic"> ' +
+                    'über Steinerne Jäger von der Padinger Alm.<br />'+
+                    'Leichte, nur im oberen Teil etwas Trittsicherheit und Schwindelfreiheit erfordernde Bergwanderung. Man gelangt erst ab einer Höhe von rund 1300 m aus dem dichten Wald, hat dann aber sehr schöne Ausblicke und vom Gipfel ein umfassendes Panorama.</p>'+
+                    '<p> <h3><a href="tour.html"> Zur Tour</a></h3>' +
+                    '</div>'+
+                    '</div>';
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(47.755486,12.850024),
+                map: map,
+                title:"Hochstaufen"
+            });
+
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map,marker);
+            });
+        }
+        var markerpos;
+        function codeAddress(inputaddress) {
+            var address = inputaddress;
+            geocoder.geocode( { 'address': address}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    if(markerpos)
+                        markerpos.setMap(null);
+                    markerpos = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location,
+                        draggable: false
+                    });
+
+                    var contentStringpos = '<div id="content">'+
+                            '<div id="siteNotice">'+
+                            '</div>'+
+                            '<p id="firstHeading" class="firstHeading">  Gesuchter Ort  </p>'+
+                            '<div id="bodyContent">'+
+                            '<h4>&#9;' + address + '&#9;</h4></br>'+
+                            '</div>'+
+                            '</div>';
+
+                    var infowindowpos = new google.maps.InfoWindow({
+                        content: contentStringpos,
+                        Width:300
+                    });
+                    google.maps.event.addListener(markerpos, 'click', function() {
+                        infowindowpos.open(map,markerpos);
+                    });
+
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+
+
+
+
+        /*
+                navigator.geolocation.getCurrentPosition(function(position){
+                    initialize2(position.coords);
+                    alert(position.coords.latitude + " UND " +  position.coords.longitude);
+                }, function(){
+                    document.getElementById('pos').innerHTML = 'Deine Position konnte leider nicht ermittelt werden';
+                });
+                var map;
+                function initialize2(coords) {
+                    var myLatlng = new google.maps.LatLng(coords.latitude, coords.longitude);
+                    var mapOptions = {
+                        center: myLatlng,
+                        zoom: 10,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+
+
+                    var map = new google.maps.Map(document.getElementById("map_canvas"),
+                            mapOptions);
+
+
+                    var contentString = '<div id="content">' +
+                            '<div id="siteNotice">' +
+                            '</div>' +
+                            '<h1 id="firstHeading" class="firstHeading">Hochstaufen (1771m)</h1>' +
+                            '<div id="bodyContent">' +
+                            '<p><b>Hochstaufen (1771m)</b><br />' +
+                            'Hochstaufen (1771m) über Steinerne Jäger von der Padinger Alm.<br />' +
+                            'Zum Reichenhallerhaus.</div>' +
+                            '</div>';
+
+                    var infowindow = new google.maps.InfoWindow({
+                        content: contentString
+                    });
+
+
+                    var marker = new google.maps.Marker({
+                        position: myLatlng,
+                        map: map,
+                        title: 'Hochstaufen (1771m)'
+                    });
+
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infowindow.open(map, marker);
+                    });
+
+                }
+                */
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="nav-wrap">
+    <nav id="nav-main">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="space"><a href="touren.html">Touren</a></li>
+            <li><a href="Aboutme.html">About me</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+    <div id="nav-trigger">
+        <span>Menu</span>
+    </div>
+    <nav id="nav-mobile"></nav>
+</div>
+<div class="wrap-content">
+    <img src="images/Fähnchen.png" alt="Hillwalk" id="logo">
+
+        <div class="row first">
+            <div class="col-lg-8 col-lg-offset-2">
+
+                <div class="input-group">
+                    <input type="text" class="form-control" id="address" name="address" onkeypress="checkforenter(event)" placeholder="Ort eingeben...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" onclick="codeAddress(document.getElementById('address').value)" type="button">Go!</button>
+                    </span>
+                </div><!-- /input-group -->
+           </div>
+        </div>
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="quote-container">
+                <i class="pin"></i>
+                <blockquote class="note yellow">
+                    <div id="map_canvas"></div>
+                    <cite class="author">Ort eingeben und Touren finden!</cite>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+
+        </div>
+    </div>
+
+ </div>
+<div class="footer">
+
+    <div class="row">
+        <div class="col-lg-5">
+            <h2>Keep Contact</h2>
+            <ul class="list-inline">
+                <li>
+                    <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-fw fa-facebook"></i></a>
+                </li>
+                <li>
+                    <a href="https://plus.google.com/" target="_blank"><i class="fa fa-fw fa-google-plus"></i></a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/?lang=de" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </li>
+
+                <li>
+                    <a href="http://www.pinterest.com/" target="_blank"><i class="fa fa-fw fa-pinterest"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-3 col-lg-offset-4 impressum" >
+            <ul>
+                <li>
+                    <a  data-container="body" data-toggle="popover" data-html="true" data-placement="top" data-content=>Impressum</a>
+                </li>
+                <li>
+                    <a target="_blank">Blog</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row last">
+        <div class="col-lg-12"></div>
+        <p>Copyright © Jaqueline Wieland 2014</p>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

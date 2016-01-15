@@ -1,0 +1,146 @@
+
+body{
+    background: url("../images/tiny_back1.JPG")center center no-repeat fixed;
+    background-size: cover;
+    min-height: 100%;
+    font-family: 'Roboto', Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+html{
+    height: 100%;
+}
+.wrap-content {
+    position: relative;
+    background-image: url("../images/subtle_zebra_3d.png");
+    padding: 3% 3% 100px 3%;
+    border: 15px solid white;
+    z-index: 2;
+}
+
+
+.first{
+    margin-top: 50px;
+}
+
+
+.quote-container {
+      margin-top: 50px;
+      position: relative;
+    }
+
+.note {
+          	  color: #333;
+          	  position: relative;
+          	  width: 100%;
+          	  margin: 0 auto;
+          	  padding: 20px;
+          	  font-family: Satisfy;
+          	  font-size: 30px;
+          	  box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
+          	}
+
+	.note .author {
+          	  display: block;
+          	  margin: 40px 0 0 0;
+          	  text-align: right;
+          	}
+
+.yellow {
+    border:none;
+    	  background: #FFFFA5;
+          -webkit-transform: rotate(2deg);
+    	  -moz-transform: rotate(2deg);
+    	  -o-transform: rotate(2deg);
+    	  -ms-transform: rotate(2deg);
+    	  transform: rotate(2deg);
+    	}
+
+
+.pin {
+    background-color: #aaa;
+    display: block;
+    height: 32px;
+    width: 2px;
+    position: absolute;
+    left: 50%;
+    top: -16px;
+    z-index: 1;
+}
+.pin:after {
+    background-color: #A31;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.1),
+    inset 3px 3px 3px hsla(0,0%,100%,.2),
+    inset -3px -3px 3px hsla(0,0%,0%,.2),
+    23px 20px 3px hsla(0,0%,0%,.15);
+    content: '';
+    height: 20px;
+    left: -8px;
+    position: absolute;
+    top: -10px;
+    width: 20px;
+}
+
+.pin:before {
+    background-color: hsla(0,0%,0%,0.1);
+    box-shadow: 0 0 .25em hsla(0,0%,0%,.1);
+    content: '';
+
+    height: 24px;
+    width: 2px;
+    left: 0;
+    position: absolute;
+    top: 8px;
+
+    transform: rotate(57.5deg);
+    -moz-transform: rotate(57.5deg);
+    -webkit-transform: rotate(57.5deg);
+    -o-transform: rotate(57.5deg);
+    -ms-transform: rotate(57.5deg);
+
+    transform-origin: 50% 100%;
+    -moz-transform-origin: 50% 100%;
+    -webkit-transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
+    -o-transform-origin: 50% 100%;
+}
+.mapspic{
+    float:right;
+    width:150px;
+}
+#map_canvas{
+    height:600px;
+}
+#address, .btn{
+    height:80px;
+}
+
+@media only screen
+and (min-width : 1025px) {
+    #address, .btn{
+        height:50px;
+    }
+    #map_canvas{
+        height:400px;
+        width: 100%;
+    }
+    .wrap-content {
+        margin: -80px  10%;
+        padding-top: 0;
+        -moz-border-radius-topleft: 35px;
+        -webkit-border-top-left-radius: 35px;
+        border-top-left-radius: 35px;
+        -moz-border-radius-topright: 35px;
+        -webkit-border-top-right-radius: 35px;
+        border-top-right-radius: 35px;
+        -moz-border-radius-bottomright: 35px;
+        -webkit-border-bottom-right-radius: 35px;
+        border-bottom-right-radius: 35px;
+        -moz-border-radius-bottomleft: 35px;
+        -webkit-border-bottom-left-radius: 35px;
+        border-bottom-left-radius: 35px;
+    }
+
+
+
+
+}
