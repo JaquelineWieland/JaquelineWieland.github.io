@@ -14,7 +14,8 @@
 
     <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfyrOrJ0OJQXbOJigEXcT_uLo-pHPCQl8&amp;sensor=false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWpQE19i5wFSuL5cCf_9UUE3A4m6vpfSQ&amp;sensor=false"></script>-->
     <script>
         $(document).ready(function(){
             initialize();
@@ -41,25 +42,33 @@
             });
         });
 
-        function checkforenter(event){
+        function checkforenter(event)
+        {
             if (event.keyCode == 13){
                 codeAddress(document.getElementById('address').value);
             }
         }
 
+
         var geocoder;
         var map;
-        var mapOptions = {
+        var mapOptions =
+        {
             zoom: 12,
+            scrollwheel: true,
             mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
+        }
 
 
-        function initialize() {
-            geocoder = new google.maps.Geocoder();
-            map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+        function initialize()
+        {
+            var markerpos;
+            var mapcanvas = document.getElementById('map_canvas');
+
+
+           geocoder = new google.maps.Geocoder();
+            map = new google.maps.Map(mapcanvas, mapOptions);
             codeAddress("Bad Reichenhall");
-
 
 
             var contentString = '<div id="content">'+
@@ -89,9 +98,13 @@
             google.maps.event.addListener(marker, 'click', function() {
                 infowindow.open(map,marker);
             });
+
+          // marker.setMap(map);
         }
-        var markerpos;
+
+
         function codeAddress(inputaddress) {
+            var markerpos;
             var address = inputaddress;
             geocoder.geocode( { 'address': address}, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
@@ -126,59 +139,6 @@
                 }
             });
         }
-
-
-
-
-
-        /*
-                navigator.geolocation.getCurrentPosition(function(position){
-                    initialize2(position.coords);
-                    alert(position.coords.latitude + " UND " +  position.coords.longitude);
-                }, function(){
-                    document.getElementById('pos').innerHTML = 'Deine Position konnte leider nicht ermittelt werden';
-                });
-                var map;
-                function initialize2(coords) {
-                    var myLatlng = new google.maps.LatLng(coords.latitude, coords.longitude);
-                    var mapOptions = {
-                        center: myLatlng,
-                        zoom: 10,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    };
-
-
-                    var map = new google.maps.Map(document.getElementById("map_canvas"),
-                            mapOptions);
-
-
-                    var contentString = '<div id="content">' +
-                            '<div id="siteNotice">' +
-                            '</div>' +
-                            '<h1 id="firstHeading" class="firstHeading">Hochstaufen (1771m)</h1>' +
-                            '<div id="bodyContent">' +
-                            '<p><b>Hochstaufen (1771m)</b><br />' +
-                            'Hochstaufen (1771m) über Steinerne Jäger von der Padinger Alm.<br />' +
-                            'Zum Reichenhallerhaus.</div>' +
-                            '</div>';
-
-                    var infowindow = new google.maps.InfoWindow({
-                        content: contentString
-                    });
-
-
-                    var marker = new google.maps.Marker({
-                        position: myLatlng,
-                        map: map,
-                        title: 'Hochstaufen (1771m)'
-                    });
-
-                    google.maps.event.addListener(marker, 'click', function () {
-                        infowindow.open(map, marker);
-                    });
-
-                }
-                */
 
     </script>
     <style>
@@ -220,6 +180,7 @@
                 <i class="pin"></i>
                 <blockquote class="note yellow">
                     <div id="map_canvas"></div>
+
                     <cite class="author">Ort eingeben und Touren finden!</cite>
                 </blockquote>
             </div>
