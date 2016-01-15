@@ -528,7 +528,7 @@ body {
 }
 
 .TWS-page .image-container {
-    background: url(../img/portfolio/ingame2.PNG) !important;
+    background: url(../img/portfolio/ingame2BIG.PNG) !important;
     background-size: cover;
     background-position: bottom;
 }
@@ -798,7 +798,12 @@ body {
     border: 5px solid #00B796;
     background: #fff;
 }
-
+.popup_content .toothie{
+   max-width: 50em;
+}
+.popup-content .toothie{
+    max-width: 50em;
+}
 .popup_content img {
     display: block;
     width: 100%;
