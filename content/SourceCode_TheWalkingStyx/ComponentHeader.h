@@ -1,0 +1,25 @@
+#pragma once
+#include "stdafx.h"
+
+//------------------Components----------------------------//
+#include "IComponent.h"
+#include "HealthComponent.h"
+#include "IRenderComponent.h"
+#include "SpriteComponent.h"
+#include "FontSpriteComponent.h"
+#include "TitleFontSpriteComponent.h"
+#include "RigidBodyComponent.h"
+#include "IkarusSpecialMoveComponent.h"
+#include "CassandraSpecialMoveComponent.h"
+#include "PlayerMovementComponent.h"
+#include "EnemyMovementComponent.h"
+#include "CritterMovementComponent.h"
+#include "PlayerSpriteComponent.h"
+#include "BackgroundSpriteComponent.h"
+#include "ScrollSpeedComponent.h"
+#include "StayOnScreenComponent.h"
+#include "NPCSpriteComponent.h"
+#include "ConstantDirectionMovementComponent.h"
+#include "LevelLayerComponent.h"
+#include "CameraFollowsPlayerComponent.h"
+//---------------------------------------------------------//
